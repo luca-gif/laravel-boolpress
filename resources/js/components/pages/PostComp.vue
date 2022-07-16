@@ -5,8 +5,8 @@
     <div class="card">
 
         <div class="pb-2"><b>Date:</b> {{getDate()}}</div>
-        <div class="titolo">{{post.title}}</div>
-        <div class="messaggio"><b>Messaggio:</b> {{shortMsg()}}</div>
+        <div class="titolo"> <router-link :to="{name: 'detail', params: {slug: post.slug}}"> {{post.title}} </router-link> </div>
+        <div class="messaggio"><b>Blog:</b> {{shortMsg()}}</div>
         <span v-if="post.category"><b>Categoria:</b> {{post.category.name}}</span>
 
     </div>

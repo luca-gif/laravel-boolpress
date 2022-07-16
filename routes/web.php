@@ -28,6 +28,9 @@ Route::middleware('auth')
         Route::resource('posts', 'PostController');
     });
 
+
+// Faccio gestire le rotte della pagina pubblica a JavaScript
+
 Route::get('{any?}', function () {
     return view('guest.home');
 })->where('any', '.*')->name('home');

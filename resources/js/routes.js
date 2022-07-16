@@ -11,6 +11,7 @@ import HomeComp from "./components/pages/HomeComp";
 import BlogComp from "./components/pages/BlogComp";
 import ContactsComp from "./components/pages/ContactsComp";
 import AboutComp from "./components/pages/AboutComp";
+import PostDetail from "./components/pages/PostDetail";
 
 const router = new VueRouter({
     mode: "history",
@@ -33,6 +34,11 @@ const router = new VueRouter({
             path: "/chi-siamo",
             name: "about",
             component: AboutComp,
+        },
+        {
+            path: "/dettagli-post/:slug",
+            name: "detail",
+            component: PostDetail,
         },
     ],
 });
