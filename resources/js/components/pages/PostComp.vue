@@ -21,12 +21,16 @@ export default {
     props: {
         post: Object
     },
+
+    computed: {
+
+    },
+
     methods:{
 
-        shortMsg(){
-            let msg = this.post.content.substr(0,60)
+           shortMsg(){
 
-            return msg + '...';
+            return this.post.content.substr(0,60) + '...';
         },
 
         getDate(){

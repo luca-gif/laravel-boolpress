@@ -14,6 +14,12 @@
             :post = "post"
             />
 
+            <sidebar-comp
+            :categories = "categories"
+            :tags = "tags"
+            />
+
+
       </div>
 
         <div class="buttons mt-4">
@@ -36,17 +42,20 @@
 
 import LoaderComp from '../partials/LoaderComp.vue';
 import PostComp from './PostComp.vue'
+import SidebarComp from './SidebarComp.vue';
 
 import {apiUrl} from '../../data/config';
 
 export default {
-  components: { LoaderComp, PostComp },
+  components: { LoaderComp, PostComp, SidebarComp },
     name: 'BlogComp',
 
       data() {
         return {
            apiUrl,
             posts: [],
+            categories: [],
+            tags: [],
             pagination: {
                 current: null,
                 last: null
@@ -58,12 +67,14 @@ export default {
         getApi(page) {
             axios.get(this.apiUrl + '?page=' + page)
             .then((r) => {
-                this.posts = r.data.data;
+                this.posts = r.data.posts.data;
+                this.categories = r.data.categories;
+                this.tags = r.data.tags;
                 this.pagination = {
-                    current: r.data.current_page,
-                    last: r.data.last_page
+                    current: r.data.posts.current_page,
+                    last: r.data.posts.last_page
                 }
-                //console.log(this.pagination);
+                //console.log(r.data);
             });
         },
     },

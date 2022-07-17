@@ -27,9 +27,11 @@ export default {
             post: {}
         }
     },
+    
     mounted(){
         this.getApi();
     },
+
     methods: {
         getApi(){
             axios.get(this.apiUrl + '/' + this.$route.params.slug)
