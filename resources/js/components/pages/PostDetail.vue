@@ -2,13 +2,20 @@
     <div class="container d-flex justify-content-center">
 
 
-        <div class="card" style="width: 18rem;">
+        <div class="card" style="width: 28rem;">
             <div class="card-body">
-                <h5 class="card-title"><b>Titolo:</b> {{post.title}}</h5>
-                <p class="card-text"><b>Blog:</b> {{post.content}}</p>
-                <p class="card-text"><span v-if="post.category"><b>Categoria:</b> {{post.category.name}}</span></p>
+                <h5 class="card-title">{{post.title}}</h5>
+                <p class="card-text">{{post.content}}</p>
 
-                <router-link :to="{name: 'blog'}" class="btn btn-dark"> Go back </router-link>
+                <div class="card-text badge badge-danger"><span v-if="post.category"> {{post.category.name}}</span></div>
+
+                <div v-for="tag in post.tags" :key="tag.id">
+                    <span v-if="post.tags" class="badge badge-warning">{{tag.name}}</span>
+                </div>
+
+                <div>
+                    <router-link :to="{name: 'blog'}" class="btn btn-dark my-2"> Go back </router-link>
+                </div>
             </div>
         </div>
 
@@ -27,7 +34,7 @@ export default {
             post: {}
         }
     },
-    
+
     mounted(){
         this.getApi();
     },

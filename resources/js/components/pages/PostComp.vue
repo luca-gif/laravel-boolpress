@@ -4,10 +4,26 @@
 
     <div class="card">
 
-        <div class="pb-2"><b>Date:</b> {{getDate()}}</div>
-        <div class="titolo"> <router-link :to="{name: 'detail', params: {slug: post.slug}}"> {{post.title}} </router-link> </div>
-        <div class="messaggio"><b>Blog:</b> {{shortMsg()}}</div>
-        <span v-if="post.category"><b>Categoria:</b> {{post.category.name}}</span>
+        <div class="pb-2"> {{getDate()}}</div>
+
+        <h5 class="titolo">{{post.title}}</h5>
+
+        <div class="messaggio">
+            <p>{{shortMsg}} <router-link :to="{name: 'detail', params: {slug: post.slug}}"><span>...see all</span></router-link> </p>
+        </div>
+
+
+      <div class="d-flex justify-content-center">
+
+        <div>
+            <span v-if="post.category" class="badge badge-danger mr-2">{{post.category.name}}</span>
+        </div>
+
+        <div v-for="tag in post.tags" :key="tag.id">
+            <span v-if="post.tags" class="badge badge-warning">{{tag.name}}</span>
+        </div>
+
+      </div>
 
     </div>
 
@@ -23,15 +39,13 @@ export default {
     },
 
     computed: {
+           shortMsg(){
 
+            return this.post.content.substr(0,150);
+        },
     },
 
     methods:{
-
-           shortMsg(){
-
-            return this.post.content.substr(0,60) + '...';
-        },
 
         getDate(){
 
@@ -55,9 +69,6 @@ export default {
 
 <style lang="scss" scoped>
 
-.container{
-    display: flex;
-}
 .card{
     margin: 10px 0;
     padding: 10px;
@@ -65,11 +76,19 @@ export default {
 }
 
 .titolo{
-    min-height: 100px;
+    min-height: 90px;
 }
 
 .messaggio{
-        min-height: 100px;
+        height: 160px;
+}
+
+a{
+    color: blue;
+    text-decoration: none;
+    &:hover{
+        color: rgba(0, 0, 255, .7);
+    }
 }
 
 </style>

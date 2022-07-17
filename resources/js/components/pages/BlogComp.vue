@@ -1,11 +1,10 @@
 <template>
     <div class="container">
 
-
         <loader-comp v-if="!posts" />
 
-
     <div v-else>
+
           <div class="d-flex">
 
           <post-comp
@@ -18,7 +17,6 @@
             :categories = "categories"
             :tags = "tags"
             />
-
 
       </div>
 
@@ -74,7 +72,7 @@ export default {
                     current: r.data.posts.current_page,
                     last: r.data.posts.last_page
                 }
-                //console.log(r.data);
+                console.log(r.data);
             });
         },
     },

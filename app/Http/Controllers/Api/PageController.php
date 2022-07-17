@@ -13,7 +13,7 @@ class PageController extends Controller
     public function index()
     {
 
-        $posts = Post::orderBy('id', 'desc')->with(['category', 'tags'])->paginate(5);
+        $posts = Post::orderBy('id', 'desc')->with(['category', 'tags'])->paginate(3);
         $categories =  Category::all();
         $tags = Tag::all();
 

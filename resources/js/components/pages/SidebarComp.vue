@@ -2,8 +2,11 @@
   <div class="container">
 
     <ul>
-        <li v-for="category in categories" :key="category.id">
+        <li v-for="category in categories"
+         :key="category.id">
+
             {{category.name}}
+
         </li>
     </ul>
 
@@ -28,5 +31,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+ul{
+    li{
+        cursor: pointer;
+    }
+}
 
 </style>
