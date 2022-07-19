@@ -79,7 +79,7 @@
 
         <div class="content">
 
-            <div id="app"></div>
+            <div id="app"></div> {{-- importo Vue dentro la home --}}
 
         </div>
     </div>

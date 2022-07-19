@@ -16,6 +16,8 @@
             <sidebar-comp
             :categories = "categories"
             :tags = "tags"
+            @getCategory="searchCategory"
+            @getTag="searchTag"
             />
 
       </div>
@@ -75,6 +77,14 @@ export default {
                 console.log(r.data);
             });
         },
+
+        searchCategory(category){
+            console.log(category)
+        },
+
+        searchTag(tag){
+            console.log(tag)
+        }
     },
 
     mounted() {

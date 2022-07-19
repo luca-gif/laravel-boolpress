@@ -25,7 +25,7 @@
                                     <tr>
                                         <th scope="row">{{ $post->id }}</th>
 
-                                        <td>{{ $post->title }}</td>
+                                        <td><strong>{{ $post->title }}</strong></td>
                                         <td>{{ $post->content }}</td>
                                         <td>{{ $post->category ? $post->category->name : '-' }}</td>
 

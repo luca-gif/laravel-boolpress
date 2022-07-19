@@ -1981,6 +1981,12 @@ __webpack_require__.r(__webpack_exports__);
         };
         console.log(r.data);
       });
+    },
+    searchCategory: function searchCategory(category) {
+      console.log(category);
+    },
+    searchTag: function searchTag(tag) {
+      console.log(tag);
     }
   },
   mounted: function mounted() {
@@ -2222,6 +2228,10 @@ var render = function render() {
     attrs: {
       categories: _vm.categories,
       tags: _vm.tags
+    },
+    on: {
+      getCategory: _vm.searchCategory,
+      getTag: _vm.searchTag
     }
   })], 2), _vm._v(" "), _c("div", {
     staticClass: "buttons mt-4"
@@ -2344,13 +2354,13 @@ var render = function render() {
   return _c("div", {
     staticClass: "container"
   }, [_c("div", {
-    staticClass: "card"
-  }, [_c("div", {
-    staticClass: "pb-2"
+    staticClass: "card px-4"
+  }, [_c("small", {
+    staticClass: "pb-2 text-right"
   }, [_vm._v(" " + _vm._s(_vm.getDate()))]), _vm._v(" "), _c("h5", {
     staticClass: "titolo"
   }, [_vm._v(_vm._s(_vm.post.title))]), _vm._v(" "), _c("div", {
-    staticClass: "messaggio"
+    staticClass: "messaggio my-2"
   }, [_c("p", [_vm._v(_vm._s(_vm.shortMsg) + " "), _c("router-link", {
     attrs: {
       to: {
@@ -2399,7 +2409,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "card",
     staticStyle: {
-      width: "28rem"
+      width: "32rem"
     }
   }, [_c("div", {
     staticClass: "card-body"
@@ -2450,11 +2460,21 @@ var render = function render() {
     staticClass: "container"
   }, [_c("ul", _vm._l(_vm.categories, function (category) {
     return _c("li", {
-      key: category.id
+      key: category.id,
+      on: {
+        click: function click($event) {
+          return _vm.$emit("getCategory", category.slug);
+        }
+      }
     }, [_vm._v("\n\n            " + _vm._s(category.name) + "\n\n        ")]);
   }), 0), _vm._v(" "), _c("ul", _vm._l(_vm.tags, function (tag) {
     return _c("li", {
-      key: tag.id
+      key: tag.id,
+      on: {
+        click: function click($event) {
+          return _vm.$emit("getTag", tag.slug);
+        }
+      }
     }, [_vm._v("\n            " + _vm._s(tag.name) + "\n        ")]);
   }), 0)]);
 };

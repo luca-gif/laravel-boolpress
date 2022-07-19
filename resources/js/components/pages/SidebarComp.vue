@@ -3,7 +3,9 @@
 
     <ul>
         <li v-for="category in categories"
-         :key="category.id">
+         :key="category.id"
+         @click="$emit('getCategory', category.slug)"
+         >
 
             {{category.name}}
 
@@ -11,7 +13,9 @@
     </ul>
 
     <ul>
-        <li v-for="tag in tags" :key="tag.id">
+        <li v-for="tag in tags" :key="tag.id"
+         @click="$emit('getTag', tag.slug)"
+        >
             {{tag.name}}
         </li>
     </ul>

@@ -2,14 +2,14 @@
   <div class="container">
 
 
-    <div class="card">
+    <div class="card px-4">
 
-        <div class="pb-2"> {{getDate()}}</div>
+        <small class="pb-2 text-right"> {{getDate()}}</small>
 
         <h5 class="titolo">{{post.title}}</h5>
 
-        <div class="messaggio">
-            <p>{{shortMsg}} <router-link :to="{name: 'detail', params: {slug: post.slug}}"><span>...see all</span></router-link> </p>
+        <div class="messaggio my-2">
+            <p>{{shortMsg}} <router-link :to="{name: 'detail', params: {slug: post.slug}}"> <span>...see all</span> </router-link></p>
         </div>
 
 
