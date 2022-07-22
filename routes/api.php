@@ -11,4 +11,6 @@ Route::namespace('Api')
 
         Route::get('/', 'PageController@index');
         Route::get('/{slug}', 'PageController@show');
+        Route::get('/category-post/{slug}', 'PageController@categoryPost');
+        Route::get('/tag-post/{slug}', 'PageController@tagPost');
     });

@@ -1,33 +1,24 @@
 <template>
-  <div class="container">
 
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{post.title}}</h5>
+                <small>{{getDate()}}</small>
+                </div>
+                <p class="mb-1">{{shortMsg}} <router-link :to="{name: 'detail', params: {slug: post.slug}}"> <span>...see all</span> </router-link></p>
 
-    <div class="card px-4">
+                <span>
+                    <span class="badge badge-danger" v-if="post.category"> {{post.category.name}}</span>
+                </span>
 
-        <small class="pb-2 text-right"> {{getDate()}}</small>
+                <span v-for="tag in post.tags" :key="tag.id">
+                    <span v-if="post.tags" class="badge badge-warning">{{tag.name}}</span>
+                </span>
 
-        <h5 class="titolo">{{post.title}}</h5>
-
-        <div class="messaggio my-2">
-            <p>{{shortMsg}} <router-link :to="{name: 'detail', params: {slug: post.slug}}"> <span>...see all</span> </router-link></p>
+            </a>
         </div>
 
-
-      <div class="d-flex justify-content-center">
-
-        <div>
-            <span v-if="post.category" class="badge badge-danger mr-2">{{post.category.name}}</span>
-        </div>
-
-        <div v-for="tag in post.tags" :key="tag.id">
-            <span v-if="post.tags" class="badge badge-warning">{{tag.name}}</span>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
 </template>
 
 <script>
@@ -63,32 +54,9 @@ export default {
         }
     }
 
-
 }
 </script>
 
 <style lang="scss" scoped>
-
-.card{
-    margin: 10px 0;
-    padding: 10px;
-    background-image: linear-gradient(#c2c2c2 10%, #fff) ;
-}
-
-.titolo{
-    min-height: 90px;
-}
-
-.messaggio{
-        height: 160px;
-}
-
-a{
-    color: blue;
-    text-decoration: none;
-    &:hover{
-        color: rgba(0, 0, 255, .7);
-    }
-}
 
 </style>

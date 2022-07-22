@@ -3,38 +3,41 @@
 
         <loader-comp v-if="!posts" />
 
-    <div v-else>
+        <div v-else>
 
-          <div class="d-flex">
+            <div class="row">
 
-          <post-comp
-            v-for="post in posts"
-            :key="post.id"
-            :post = "post"
-            />
+               <div class="col-8">
+                    <post-comp
+                    v-for="post in posts"
+                    :key="post.id"
+                    :post = "post"
+                    />
+               </div>
 
-            <sidebar-comp
-            :categories = "categories"
-            :tags = "tags"
-            @getCategory="searchCategory"
-            @getTag="searchTag"
-            />
+                <sidebar-comp
+                :categories = "categories"
+                :tags = "tags"
+                @getCategory="searchCategory"
+                @getTag="searchTag"
+                />
 
-      </div>
+                <div v-show="showPagination" class="buttons mt-4">
+                    <button :disabled = "pagination.current == 1" @click="getApi(pagination.current - 1)"> &lt;&lt; </button>
 
-        <div class="buttons mt-4">
-                        <button :disabled = "pagination.current == 1" @click="getApi(pagination.current - 1)"> &lt;&lt; </button>
+                    <button @click="getApi(page)" :disabled ="pagination.current == page" v-for="page in pagination.last" :key="page.current">
 
-            <button @click="getApi(page)" :disabled ="pagination.current == page" v-for="page in pagination.last" :key="page.current">
+                        {{page}}
 
-                {{page}}
+                    </button>
 
-            </button>
+                    <button :disabled = "pagination.current == pagination.last" @click="getApi(pagination.current + 1)">
+                     >>
+                    </button>
 
-            <button :disabled = "pagination.current == pagination.last" @click="getApi(pagination.current + 1)"> >> </button>
+                </div>
+            </div>
         </div>
-    </div>
-
     </div>
 </template>
 
@@ -56,10 +59,12 @@ export default {
             posts: [],
             categories: [],
             tags: [],
+
             pagination: {
                 current: null,
                 last: null
-            }
+            },
+            showPagination: false
         }
     },
 
@@ -70,20 +75,36 @@ export default {
                 this.posts = r.data.posts.data;
                 this.categories = r.data.categories;
                 this.tags = r.data.tags;
+                this.showPagination = true;
+
                 this.pagination = {
                     current: r.data.posts.current_page,
                     last: r.data.posts.last_page
                 }
-                console.log(r.data);
+                //console.log(this.posts);
             });
         },
 
         searchCategory(category){
-            console.log(category)
+
+            axios.get(this.apiUrl + '/category-post/' + category)
+            .then((r)=>{
+
+                this.showPagination = false;
+                this.posts = r.data.posts
+                console.log(r.data);
+
+            })
         },
 
         searchTag(tag){
-            console.log(tag)
+            axios.get(this.apiUrl + '/tag-post/' + tag)
+             .then((r)=>{
+
+                 this.showPagination = false;
+                 this.posts = r.data.posts
+                 console.log(this.posts);
+            })
         }
     },
 

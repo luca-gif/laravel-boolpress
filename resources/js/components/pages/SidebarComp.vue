@@ -1,26 +1,22 @@
 <template>
-  <div class="container">
+    <div class="col-3 offset-1">
+        <ul class="list-group">
 
-    <ul>
-        <li v-for="category in categories"
-         :key="category.id"
-         @click="$emit('getCategory', category.slug)"
-         >
+            <li class="list-group-item" v-for="category in categories"
+                :key="category.id"
+                @click="$emit('getCategory', category.slug)"
+                >
+                    {{category.name}}
+            </li>
 
-            {{category.name}}
+            <li class="list-group-item" v-for="tag in tags" :key="tag.id"
+                @click="$emit('getTag', tag.slug)"
+                >
+                    {{tag.name}}
+            </li>
 
-        </li>
-    </ul>
-
-    <ul>
-        <li v-for="tag in tags" :key="tag.id"
-         @click="$emit('getTag', tag.slug)"
-        >
-            {{tag.name}}
-        </li>
-    </ul>
-
-  </div>
+        </ul>
+    </div>
 </template>
 
 <script>

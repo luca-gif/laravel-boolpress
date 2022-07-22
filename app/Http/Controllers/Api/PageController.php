@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Post;
 use App\Category;
-use App\Http\Controllers\Controller;
 use App\Tag;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
